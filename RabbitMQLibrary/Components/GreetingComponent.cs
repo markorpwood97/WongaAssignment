@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WongaLibrary
+namespace WongaLibrary.Components
 {
     public static class GreetingComponent
     {

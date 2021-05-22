@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUIB", "ConsoleUIB\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WongaLibrary", "RabbitMQLibrary\WongaLibrary.csproj", "{D039D47F-0A2F-485D-A2A1-4F3CC00EECEB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WongaMockTests", "WongaMockTests\WongaMockTests.csproj", "{A482E075-4850-4DE1-AFA9-61F287A417A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WongaMockTests", "WongaMockTests\WongaMockTests.csproj", "{F8B1DDC5-4D89-4B34-AA47-BC9FEF7B21A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{D039D47F-0A2F-485D-A2A1-4F3CC00EECEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D039D47F-0A2F-485D-A2A1-4F3CC00EECEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D039D47F-0A2F-485D-A2A1-4F3CC00EECEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A482E075-4850-4DE1-AFA9-61F287A417A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A482E075-4850-4DE1-AFA9-61F287A417A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A482E075-4850-4DE1-AFA9-61F287A417A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A482E075-4850-4DE1-AFA9-61F287A417A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B1DDC5-4D89-4B34-AA47-BC9FEF7B21A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B1DDC5-4D89-4B34-AA47-BC9FEF7B21A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B1DDC5-4D89-4B34-AA47-BC9FEF7B21A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B1DDC5-4D89-4B34-AA47-BC9FEF7B21A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,7 @@
 ﻿using WongaLibrary;
 using System;
+using WongaLibrary.Components;
+using WongaLibrary.Utilities;
 
 namespace WongaAssignment
 {
@@ -7,12 +9,13 @@ namespace WongaAssignment
     {
         static void Main()
         {
+            MessageComponent messageComponent = new MessageComponent(new RabbitMqService());
             Console.WriteLine("Please enter your name");
 
-            string name = GreetingComponent.AddInitialGreeting(Console.ReadLine());
-            Console.WriteLine(name);
+            string greeting = GreetingComponent.AddInitialGreeting(Console.ReadLine());
+            Console.WriteLine(greeting);
 
-            MessageService.Send("starwars", name);
+            messageComponent.SendMessage(greeting);
         }
     }
 }

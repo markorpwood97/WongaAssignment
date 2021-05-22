@@ -1,19 +1,25 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System;
 using System.Text;
 
-namespace WongaLibrary
+namespace WongaLibrary.Utilities
 {
-    public class MessageService
+    public class RabbitMqService : IRabbitMqService
     {
-        public static void Send(string queue, string message)
-        {
-            ConnectionFactory factory = new ConnectionFactory() { HostName = "localhost" };
+        ConnectionFactory _factory;
+        string _queue;
 
-            using var connection = factory.CreateConnection();
+        public RabbitMqService()
+        {
+            _factory = new ConnectionFactory() { HostName = "localhost" };
+            _queue = "starwars";
+        }
+
+        public void SendData(string message)
+        {
+            using var connection = _factory.CreateConnection();
             using var channel = connection.CreateModel();
-            channel.QueueDeclare(queue: queue,
+            channel.QueueDeclare(queue: _queue,
                                     durable: false,
                                     exclusive: false,
                                     autoDelete: false,
@@ -22,17 +28,18 @@ namespace WongaLibrary
             var body = Encoding.UTF8.GetBytes(message);
 
             channel.BasicPublish(exchange: "",
-                                 routingKey: queue,
+                                 routingKey: _queue,
                                  basicProperties: null,
                                  body: body);
         }
 
-        public static void Get(string queue)
+        public string GetData()
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
-            using var connection = factory.CreateConnection();
+            string message = "";
+
+            using var connection = _factory.CreateConnection();
             using var channel = connection.CreateModel();
-            channel.QueueDeclare(queue: queue,
+            channel.QueueDeclare(queue: _queue,
                                  durable: false,
                                  exclusive: false,
                                  autoDelete: false,
@@ -42,23 +49,15 @@ namespace WongaLibrary
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-
-                message = GreetingComponent.RemoveInitalGreeting(message);
-
-                if (!GreetingComponent.ValidateName(message))
-                {
-                    Console.WriteLine("The force is weak with this one");
-                    return;
-                }
-
-                Console.WriteLine(GreetingComponent.AddIconicLine(message));
+                message = Encoding.UTF8.GetString(body);
             };
-            channel.BasicConsume(queue: queue,
+            channel.BasicConsume(queue: _queue,
                                  autoAck: true,
                                  consumer: consumer);
 
-            Console.ReadLine();
+            while (string.IsNullOrEmpty(message)) { }
+
+            return message;
         }
     }
 }
