@@ -25,7 +25,7 @@ namespace WongaLibrary.Components
         {
             char[] invalidCharacters = "`~!@#$%^&*()_+=0123456789<>,.?/\\|{}[]'\"".ToCharArray();
 
-            return !string.IsNullOrWhiteSpace(name) && name.IndexOfAny(invalidCharacters) >= 0;
+            return !string.IsNullOrWhiteSpace(name) || name.IndexOfAny(invalidCharacters) >= 0;
         }
     }
 }
