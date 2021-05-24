@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WongaLibrary.Components
 {
-    interface IMessageComponent
+    public interface IMessageComponent
     {
         public void SendMessage(string message);
         public string GetMessage();

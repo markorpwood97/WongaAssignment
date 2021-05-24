@@ -1,4 +1,5 @@
 ﻿using System;
+using WongaLibrary;
 using WongaLibrary.Components;
 using WongaLibrary.Utilities;
 
@@ -8,11 +9,12 @@ namespace ConsoleUIB
     {
         static void Main()
         {
-            MessageComponent messageComponent = new MessageComponent(new RabbitMqService());
+            IMessageComponent messageComponent = Factory.CreateMessageComponent();
             string returnedMessage = messageComponent.GetMessage();
+            IGreetingComponent greetingComponent = Factory.CreateGreetingComponent();
 
-            string usersName = GreetingComponent.RemoveInitalGreeting(returnedMessage);
-            Console.WriteLine(GreetingComponent.AddIconicLine(usersName));
+            string usersName = greetingComponent.RemoveInitalGreeting(returnedMessage);
+            Console.WriteLine(greetingComponent.AddIconicLine(usersName));
             Console.ReadLine();
         }
     }

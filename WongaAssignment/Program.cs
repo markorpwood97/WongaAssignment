@@ -9,10 +9,11 @@ namespace WongaAssignment
     {
         static void Main()
         {
-            MessageComponent messageComponent = new MessageComponent(new RabbitMqService());
+            IMessageComponent messageComponent = Factory.CreateMessageComponent();
             Console.WriteLine("Please enter your name");
 
-            string greeting = GreetingComponent.AddInitialGreeting(Console.ReadLine());
+            IGreetingComponent greetingComponent = Factory.CreateGreetingComponent();
+            string greeting = greetingComponent.AddInitialGreeting(Console.ReadLine());
             Console.WriteLine(greeting);
 
             messageComponent.SendMessage(greeting);

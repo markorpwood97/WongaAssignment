@@ -14,17 +14,19 @@ namespace WongaMockTests
         {
             using (var mock = AutoMock.GetLoose())
             {
+                string message = "test";
+
                 mock.Mock<IRabbitMqService>()
-                    .Setup(x => x.SendData("test"));
+                    .Setup(x => x.SendData(message));
 
                 var cls = mock.Create<MessageComponent>();
 
-                cls.SendMessage("test");
+                cls.SendMessage(message);
 
                 Assert.True(0 == 0);
 
                 mock.Mock<IRabbitMqService>()
-                    .Verify(x => x.SendData("test"), Times.Exactly(1));
+                    .Verify(x => x.SendData(message), Times.Exactly(1));
             }
         }
 
@@ -33,12 +35,14 @@ namespace WongaMockTests
         {
             using (var mock = AutoMock.GetLoose())
             {
+                string message = "test";
+
                 mock.Mock<IRabbitMqService>()
                     .Setup(x => x.GetData())
-                    .Returns("name");
+                    .Returns(message);
 
                 var cls = mock.Create<MessageComponent>();
-                var expected = "name";
+                var expected = message;
 
                 var actual = cls.GetMessage();
 
