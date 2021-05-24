@@ -23,7 +23,9 @@ namespace WongaLibrary.Components
 
         public bool ValidateName(string name)
         {
-            return !string.IsNullOrWhiteSpace(name);
+            char[] invalidCharacters = "`~!@#$%^&*()_+=0123456789<>,.?/\\|{}[]'\"".ToCharArray();
+
+            return !string.IsNullOrWhiteSpace(name) && name.IndexOfAny(invalidCharacters) >= 0;
         }
     }
 }

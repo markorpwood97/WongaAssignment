@@ -10,10 +10,15 @@ namespace ConsoleUIB
         static void Main()
         {
             IMessageComponent messageComponent = Factory.CreateMessageComponent();
-            string returnedMessage = messageComponent.GetMessage();
             IGreetingComponent greetingComponent = Factory.CreateGreetingComponent();
 
+            string returnedMessage = messageComponent.GetMessage();
             string usersName = greetingComponent.RemoveInitalGreeting(returnedMessage);
+            if (!greetingComponent.ValidateName(usersName))
+            {
+                Console.WriteLine("Please enter a valid name");
+                return;
+            }
             Console.WriteLine(greetingComponent.AddIconicLine(usersName));
             Console.ReadLine();
         }
