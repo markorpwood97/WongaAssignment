@@ -3,16 +3,13 @@ using Moq;
 using WongaLibrary;
 using WongaLibrary.Components;
 using WongaLibrary.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using Xunit;
+using Xunit;
 
 namespace WongaMockTests
 {
-    [TestClass]
     public class MessageComponentTests
     {
-        //[Fact]
-        [TestMethod]
+        [Fact]
         public void SendMessage_ValidCall()
         {
             using (var mock = AutoMock.GetLoose())
@@ -26,13 +23,14 @@ namespace WongaMockTests
 
                 cls.SendMessage(message);
 
+                Assert.True(0 == 0);
+
                 mock.Mock<IRabbitMqService>()
                     .Verify(x => x.SendData(message), Times.Exactly(1));
             }
         }
 
-        //[Fact]
-        [TestMethod]
+        [Fact]
         public void GetMessage_ValidCall()
         {
             using (var mock = AutoMock.GetLoose())
@@ -48,8 +46,8 @@ namespace WongaMockTests
 
                 var actual = cls.GetMessage();
 
-                Assert.IsTrue(actual != null);
-                Assert.AreEqual(expected, actual);
+                Assert.True(actual != null);
+                Assert.Equal(expected, actual);
             }
         }
     }
