@@ -1,6 +1,5 @@
 using Autofac.Extras.Moq;
 using Moq;
-using WongaLibrary;
 using WongaLibrary.Components;
 using WongaLibrary.Utilities;
 using Xunit;
@@ -22,8 +21,6 @@ namespace WongaMockTests
                 var cls = mock.Create<MessageComponent>();
 
                 cls.SendMessage(message);
-
-                Assert.True(0 == 0);
 
                 mock.Mock<IRabbitMqService>()
                     .Verify(x => x.SendData(message), Times.Exactly(1));

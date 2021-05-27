@@ -1,7 +1,6 @@
-﻿using WongaLibrary;
-using System;
+﻿using System;
+using WongaLibrary;
 using WongaLibrary.Components;
-using WongaLibrary.Utilities;
 
 namespace WongaAssignment
 {
