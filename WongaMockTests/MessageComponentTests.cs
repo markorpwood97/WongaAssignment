@@ -18,9 +18,9 @@ namespace WongaMockTests
                 mock.Mock<IRabbitMqService>()
                     .Setup(x => x.SendData(message));
 
-                var cls = mock.Create<MessageComponent>();
+                var messageComponent = mock.Create<MessageComponent>();
 
-                cls.SendMessage(message);
+                messageComponent.SendMessage(message);
 
                 mock.Mock<IRabbitMqService>()
                     .Verify(x => x.SendData(message), Times.Exactly(1));
@@ -38,10 +38,10 @@ namespace WongaMockTests
                     .Setup(x => x.GetData())
                     .Returns(message);
 
-                var cls = mock.Create<MessageComponent>();
+                var messageComponent = mock.Create<MessageComponent>();
                 var expected = message;
 
-                var actual = cls.GetMessage();
+                var actual = messageComponent.GetMessage();
 
                 Assert.True(actual != null);
                 Assert.Equal(expected, actual);
