@@ -1,5 +1,6 @@
 using Autofac.Extras.Moq;
 using Moq;
+using WongaLibrary;
 using WongaLibrary.Components;
 using WongaLibrary.Utilities;
 using Xunit;
@@ -18,9 +19,11 @@ namespace WongaMockTests
                 mock.Mock<IRabbitMqService>()
                     .Setup(x => x.SendData(message));
 
-                var messageComponent = mock.Create<MessageComponent>();
+                var cls = mock.Create<MessageComponent>();
 
-                messageComponent.SendMessage(message);
+                cls.SendMessage(message);
+
+                Assert.True(0 == 0);
 
                 mock.Mock<IRabbitMqService>()
                     .Verify(x => x.SendData(message), Times.Exactly(1));
@@ -38,10 +41,10 @@ namespace WongaMockTests
                     .Setup(x => x.GetData())
                     .Returns(message);
 
-                var messageComponent = mock.Create<MessageComponent>();
+                var cls = mock.Create<MessageComponent>();
                 var expected = message;
 
-                var actual = messageComponent.GetMessage();
+                var actual = cls.GetMessage();
 
                 Assert.True(actual != null);
                 Assert.Equal(expected, actual);
