@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WongaLibrary;
 using WongaLibrary.Components;
 using WongaLibrary.Utilities;
 
@@ -11,11 +12,9 @@ namespace ConsoleUIB
     {
         public static IContainer Configure()
         {
-            var builder = new ContainerBuilder();
+            var builder = GlobalContainerConfig.Configure();
 
             builder.RegisterType<Application>().As<IApplication>();
-            builder.RegisterType<RabbitMqService>().As<IRabbitMqService>();
-            builder.RegisterType<MessageComponent>().As<IMessageComponent>();
 
             return builder.Build();
         }
