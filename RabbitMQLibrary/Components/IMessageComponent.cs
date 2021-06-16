@@ -6,7 +6,7 @@ namespace WongaLibrary.Components
 {
     public interface IMessageComponent
     {
-        public void SendMessage(string message);
-        public string GetMessage();
+        public void SendMessage(string message, string queue);
+        public string GetMessage(string queue);
     }
 }
