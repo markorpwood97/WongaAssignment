@@ -11,14 +11,14 @@ namespace WongaLibrary.Components
             _rabbitMqService = rabbitMqService;
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(string message, string queue)
         {
-            _rabbitMqService.SendData(message);
+            _rabbitMqService.SendData(message, queue);
         }
 
-        public string GetMessage()
+        public string GetMessage(string queue)
         {
-            return _rabbitMqService.GetData();
+            return _rabbitMqService.GetData(queue);
         }
     }
 }

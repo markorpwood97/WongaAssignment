@@ -2,8 +2,8 @@
 {
     public interface IRabbitMqService
     {
-        void SendData(string message);
-        string GetData();
+        void SendData(string message, string queue);
+        string GetData(string queue);
 
     }
 }

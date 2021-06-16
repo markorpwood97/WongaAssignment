@@ -1,5 +1,6 @@
-﻿using System;
-using WongaLibrary;
+﻿using Autofac;
+using ConsoleUIA;
+using System;
 using WongaLibrary.Components;
 
 namespace WongaAssignment
@@ -8,14 +9,13 @@ namespace WongaAssignment
     {
         static void Main()
         {
-            IMessageComponent messageComponent = Factory.CreateMessageComponent();
-            Console.WriteLine("Please enter your name");
+            var containerBuilder = ContainerConfig.Configure();
 
-            IGreetingComponent greetingComponent = Factory.CreateGreetingComponent();
-            string greeting = greetingComponent.AddInitialGreeting(Console.ReadLine());
-            Console.WriteLine(greeting);
-
-            messageComponent.SendMessage(greeting);
+            using (var scope = containerBuilder.BeginLifetimeScope())
+            {
+                var app = scope.Resolve<IApplication>();
+                app.Run();
+            }
         }
     }
 }

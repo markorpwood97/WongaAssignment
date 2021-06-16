@@ -15,7 +15,7 @@ namespace WongaLibrary.Utilities
             _queue = "starwars";
         }
 
-        public void SendData(string message)
+        public void SendData(string message, string queue)
         {
             using var connection = _factory.CreateConnection();
             using var channel = connection.CreateModel();
@@ -33,7 +33,7 @@ namespace WongaLibrary.Utilities
                                  body: body);
         }
 
-        public string GetData()
+        public string GetData(string queue)
         {
             string message = "";
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Autofac;
+using ConsoleUIB;
+using System;
 using WongaLibrary;
-using WongaLibrary.Components;
+//using WongaLibrary.Components;
 
 namespace ConsoleUIB
 {
@@ -8,18 +10,13 @@ namespace ConsoleUIB
     {
         static void Main()
         {
-            IMessageComponent messageComponent = Factory.CreateMessageComponent();
-            IGreetingComponent greetingComponent = Factory.CreateGreetingComponent();
+            var containerBuilder = ContainerConfig.Configure();
 
-            string returnedMessage = messageComponent.GetMessage();
-            string usersName = greetingComponent.RemoveInitalGreeting(returnedMessage);
-            if (!greetingComponent.ValidateName(usersName))
+            using (var scope = containerBuilder.BeginLifetimeScope())
             {
-                Console.WriteLine("Please enter a valid name");
-                return;
+                var app = scope.Resolve<IApplication>();
+                app.Run();
             }
-            Console.WriteLine(greetingComponent.AddIconicLine(usersName));
-            Console.ReadLine();
         }
     }
 }
